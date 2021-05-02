@@ -1,18 +1,67 @@
 <!doctype html>
-
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
-
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
-
-</head>
-
+	<meta charset="UTF-8">
+	<title>Weather App /title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 <body>
-  <script src="index.js"></script>
+	<div class="container">
+		<div class="row">
+			<h1>&nbsp;Weather App!!</h1>
+		</div>
+		<div class="row">
+			<form class="weather-getter" onsubmit="return false;">
+				<input type="text" placeholder='Enter zip code or city for local forecast' name="location" size="50" autofocus required>
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+		<div class="results">
+			<!-- Results will be displayed here -->
+		</div>
+		<div class="templates hidden">
+			<div class="current-conditions">
+				<div class="row">
+					<h1>&nbsp;Current Conditions for <span class="location"></span></h1><div class="col-md-1 col-xs-12"><img height="120" width="150" src="http://openweathermap.org/img/w/10d.png" class="image img-rounded" alt="Current Weather Icon"></div>
+					<div class="col-md-1 col-xs-1"></div>
+					<div class="col-md-2 col-xs-12"><h2><span class="main">Fair</span><br><span class="temperature">70</span></h2></div>
+					<div class="col-md-3 col-xs-12"><h4>Humidity <span class="humidity">61</span>%<br>Wind <span class="wind-speed">10 </span>
+					<br>Barometer <span class="pressure">30.14</span> hPa<br><br>Cloudiness <span class="cloudiness">10</span>%</h4>
+					</div>
+				</div>
+			</div>
+			<div class="hourly-header">
+				<div class="row">
+					<h1>&nbsp;24 Hour Forecast</h1>
+				</div>
+			</div>	
+			<div class="hourly-column">
+				<div class="col-md-1 col-md-2 col-sm-3 small-border">
+					<p class="time">12:00 pm</p>
+					<img src="http://openweathermap.org/img/w/10d.png" class="image img-rounded img-responsive" alt="Current Weather Icon">
+					<p><span class="temperature">76</span><br><span class="main">showers</span></p>
+				</div>				
+			</div>
+			<div class="extended-header">
+				<div class="row">
+					<h1>&nbsp;Extended Forecast</h1>
+				</div>
+			</div>
+			<div class="extended-column">					
+				<div class="col-lg-1 col-md-2 col-sm-3 small-border">
+					<p><br><span class="day">Mon</span><br><span class="date">Jun 5</span></p>
+					<img src="http://openweathermap.org/img/w/10d.png" class="image img-rounded img-responsive" alt="Current Weather Icon">
+					<p><span class="temperature">76</span><br><span class="main">showers</span></p>
+				</div>
+			</div>	
+		</div>
+		
+	</div> <!-- end of container -->
+	<!-- JavaScript -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="js/app.js"></script>
+
 </body>
 </html>
