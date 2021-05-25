@@ -9,6 +9,8 @@ body {
   background-repeat: none;
   background-position: center;
   background-attachment: fixed;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
 }
 
 .hide {
