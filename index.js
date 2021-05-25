@@ -17,76 +17,36 @@ function getLongLat(location){
 	});
 }
 
-function getWeatherData(lat, lng){
-  console.log(lat);
-  console.log(lng);
-  $.getJSON(`pro.openweathermap.org/data/2.5/forecast/hourly?q={city name}&appid={API key}`,{
-    }, 
-    function(weatherResponse){
-  	  let widget = renderWeatherData(weatherResponse);
-  	  $('.weather_results').html(widget);
-  });
+function getWeatherData() {
+    let city = $('.search-query').val();
+    $.ajax(WEATHER_SEARCH_URL, {
+        data: {
+            units: 'imperial',
+            q: city
+        },
+        dataType: 'jsonp',
+        type: 'GET',
+        success: function (data) {
+            let widget = displayWeather(data);
+            $('#weather-display').html(widget);
+            scrollPageTo('#weather-display', 15);
+        }
+    });
 }
 
-function renderWeatherLocation(data){
-	console.log(data);
-	return `
-	<div class="city_state">
-	  <h2>5 Day Forecast: ${data.results[0].address_components[0].long_name}, ${data.results[0].address_components[2].long_name}</h2>
-	</div>  `
-}
-
-function weatherHeader(data){
-  let widget = renderWeatherLocation(data)
-  $('.city_state').html(widget);
-}
-
-
-function renderWeatherData(data){
-	console.log(data);
-	return `
-  <div class="weather_results">
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[0].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[0].date.day} ${data.forecast.simpleforecast.forecastday[0].date.monthname} ${data.forecast.simpleforecast.forecastday[0].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[0].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[0].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[0].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[0].low.fahrenheit} &#8457 </li>
-    </ul>		
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[1].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[1].date.day} ${data.forecast.simpleforecast.forecastday[1].date.monthname} ${data.forecast.simpleforecast.forecastday[1].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[1].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[1].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[1].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[1].low.fahrenheit} &#8457 </li>
-    </ul>	
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[2].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[2].date.day} ${data.forecast.simpleforecast.forecastday[2].date.monthname} ${data.forecast.simpleforecast.forecastday[2].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[2].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[2].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[2].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[2].low.fahrenheit} &#8457 </li>
-    </ul>	
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[3].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[3].date.day} ${data.forecast.simpleforecast.forecastday[3].date.monthname} ${data.forecast.simpleforecast.forecastday[3].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[3].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[3].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[3].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[3].low.fahrenheit} &#8457 </li>
-    </ul>	
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[4].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[4].date.day} ${data.forecast.simpleforecast.forecastday[4].date.monthname} ${data.forecast.simpleforecast.forecastday[4].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[4].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[4].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[4].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[4].low.fahrenheit} &#8457 </li>
-    </ul>	
-  </div>`;
+function displayWeather(data) {
+    return `
+    <div class="weather-results">
+        <h1><strong>Current Weather for ${data.name}</strong></h1>
+        <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+        <p style="font-size:30px; margin-top:10px;">${data.weather[0].main}</p>
+        <p style="color:steelblue;" ">Description:</p><p"> ${data.weather[0].description}</p>
+        <p style="color:steelblue;">Temperature:</p><p> ${data.main.temp} &#8457; / ${(((data.main.temp)-32)*(5/9)).toFixed(2)} &#8451;</p>
+        <p style="color:steelblue;">Min. Temperature:</p><p> ${data.main.temp_min} &#8457; / ${(((data.main.temp_min)-32)*(5/9)).toFixed(2)} &#8451</p>
+        <p style="color:steelblue;">Max. Temperature:</p><p> ${data.main.temp_max} &#8457; / ${(((data.main.temp_max)-32)*(5/9)).toFixed(2)} &#8451</p>
+        <p style="color:steelblue;">Humidity:</p><p> ${data.main.humidity} &#37;</p>
+    </div>
+`;
 }
 
 
