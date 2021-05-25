@@ -3,7 +3,7 @@ function getLongLat(location){
 	console.log($('.js-query').val());
   $.getJSON('https://maps.googleapis.com/maps/api/geocode/json',{
     address:`${location}`,
-    key:'AIzaSyASP9vWd3OTWFUDn6FoliMof9g8k3PVYds'
+    key:'AIzaSyB4Xc0nTrdkoE2k7F0vnJ-mLfKyTF5wqSE'
 		}, 
 		function(response){
 			console.log(response);
@@ -20,7 +20,7 @@ function getLongLat(location){
 function getWeatherData(lat, lng){
   console.log(lat);
   console.log(lng);
-  $.getJSON(`https://api.wunderground.com/api/d8dc2c1a95d6b964/forecast10day/q/${lat},${lng}.json`,{
+  $.getJSON(`pro.openweathermap.org/data/2.5/forecast/hourly?q={city name}&appid={API key}`,{
     }, 
     function(weatherResponse){
   	  let widget = renderWeatherData(weatherResponse);
