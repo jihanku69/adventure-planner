@@ -10,8 +10,6 @@ function getLongLat(location){
 			let lat = response.results[0].geometry.location.lat;
 			let lng = response.results[0].geometry.location.lng;
 			getWeatherData(lat, lng);
-			getHikeData(lat, lng);
-			getClimbData(lat, lng);
 			weatherHeader(response);
 
 	});
