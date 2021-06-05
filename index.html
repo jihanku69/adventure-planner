@@ -1,55 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Lindsey">
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Adventure Planner app.">
-    <title>Adventure Planner</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Mina" rel="stylesheet">
-  </head>
-
-  <body>
-    <main role="main">
-      <div class="start-display">
-        <header role="banner" class="row">
-          <h1>Adventure Planner</h1>
-          <p class="api_info">Plan your next hiking trip!</p>
-        </header>
-
-        <form class="location-form">
-          <label for="query"></label>
-          <input type="text" class="js-query" id="autocomplete" placeholder="Enter a city" required>
-          <button type="submit" class="submit_button">Search</button>
-        </form>
-      </div>  
-
-      <section class="weather_display">
-        <div class="city_state"></div>
-        <div class="weather_results"></div>
-      </section>
-
-      <nav role="navigation" class="navigation hide" id="results-navigation">
-        <div class="options row">
-          <button class="hike-button" id="hiking">HIKE</button>
-          <button class="climb-button" id="climbing">CLIMB</button> 
-        </div>
-      </nav>
-
-      <section class="activity_results">
-      </section>
-    </main>
-
-    <footer class="footer" role="contentinfo">
-      <a href="https://github.com/codelikeagirl29" target="_blank"> <img src="./github_icon.png" alt="github icon"></a>&nbsp;
-      <a href="https://www.linkedin.com/in/lindsey-howard/" target="_blank"><img src="./linkedin_icon.png" alt="linkedin icon"></a>&nbsp;
-      <a href="mailto:codelikeagirl91@gmail.com"><img src="./mail_icon.png" alt="email icon"></a>
-      <p>By Lindsey for Bloc Coding Bootcamp</p>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="index.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASP9vWd3OTWFUDn6FoliMof9g8k3PVYds&libraries=places&callback=activatePlacesSearch""></script>
-  </body>
-
+<head>
+	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LET'S HIKE</title>
+	<link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Monda" rel="stylesheet">
+</head>
+<body>	
+	<header role="banner" class="bg">
+		<h1>LET'S HIKE</h1>
+		<h4>Find a hike near you!</h4>
+		<p class="intro">Adventure planner that uses Google Maps, OpenWeatherMap and Trails to plan your perfect day.</p>
+		<legend>
+		<form action="#" class="search-form">
+			<label for="city-name"></label>
+			<input type="text" name="city-name" placeholder="Enter a city" id="city-name" aria-label="input city name" autofocus required>
+			<button type="submit" aria-label="search" class="submit-button">Explore</button>
+		</form>
+		</legend>
+	</header>
+	<main role="main">
+		<div class="weather-result" id="weather-display"></div>
+		<div class="hike-result container"></div>
+	</main>
+	<footer role="contentinfo">
+		<a href="https://github.com/Codelikeagirl29" target="_blank"><img src="images/github-icon.png" alt="github icon"></a>&nbsp;
+        <a href="https://www.linkedin.com/in/lindsey-howard/" target="_blank"><img src="images/linkedin-icon.png" alt="linkedin icon"></a>&nbsp;
+        <a href="mailto:codelikeagirl91@gmail.com"><img src="images/gmail-icon.png" alt="email icon"></a>
+        <p>Developed by Lindsey Howard/p>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+      crossorigin="anonymous"></script>
+    	<script type="text/javascript" src="js/app.js"></script>
+    	<script type="text/javascript" src="js/template-utilities.js"></script>
+  	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi7bhHvyXI8nzfhR70rHw6kV-7Z9zrMS0&libraries=places&callback=autocompleteSearchText"></script>
+</body>
 </html>
