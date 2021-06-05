@@ -10,4 +10,4 @@ For all my fellow explorers out there, this app is for viewing the weather and l
 - Postman
 - [Rapidapi](https://rapidapi.com/marketplace)
 
-https://github.com/CodeLikeAGirl29/adventure-planner/blob/720e041df905db3bce407fd4bbfbc5cf2811c222/adventure-api.jpg
+![Screenshot](https://github.com/CodeLikeAGirl29/adventure-planner/blob/720e041df905db3bce407fd4bbfbc5cf2811c222/adventure-api.jpg)
