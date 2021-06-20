@@ -1,187 +1,171 @@
-body, html{
-    height: 100%;
-    margin: 0;
-}
-main{
-	background: 
-       linear-gradient(
-           rgba(255,255,255,0.1),
-           rgba(0,0,0,0.5)
-       ), url("background-image.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100%;
-}
-h1, p{
-    text-align: center;
-}	
-h1{
-    Font-Family: 'Julius Sans One', Sans-Serif;
-    Font-Size: 45px;
-    color: #3c291d;
-    padding-top: 60px;
-}
-p{
-    Font-Family: 'Monda', Sans-Serif;
-    Font-Size: 20px;
-    color:rgb(245,220,124);
-}
-.quote{
-    padding-top: 70px;
-}
-h4{
-    text-align: center;
-    Font-Family: 'Monda', Sans-Serif;
-    color: #3c291d;
-    padding-top: 10px;
-}
-/**** Input form style ****/
-.search-form{
-    padding: 20px;
-}
-input, button {
-    Font-Family: 'Monda', Sans-Serif;
-    color: #f7ca86;
-    font-size: 20px;
-    display:block;
-    margin: 0 auto; 
-    border: 0;
-    width: 220px;
-    }
-input{
-    margin-top: 50px;
-    padding: 5px;
-    height: 30px; 
-    color: #3c291d;
-}
-button{
-    width: 230px;
-    height: 33px;
-    background-color: rgba(0, 0, 0, 0.5);
+body {
+  height: 100%;
+  font-family: 'Rubik', sans-serif;;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  background: url(background-image.jpg);
+  background-size: cover;
+  background-repeat: none;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-/**** Weather result style ****/
-.weather-result{
-    background-color: rgba(238,163,108, 0.1);
-}
-.weather {
-    max-width: 80%;
-    font-size: 33px;
-    text-align: center;
-    margin: 30px auto;  
-}
-.row{
-    display:flex;    
-}
-.column{
-    padding-bottom: 10px;
-}
-.left, 
-.right {
-    width: 50%;
-}
-.right{
-    padding-top: 15px;
-    text-align: left;
-}
-.city-name h2{
-    Font-Family: 'Julius Sans One', Sans-Serif;
-    padding-top:10px;
-    font-size: 35px;
-    font-weight: 600;
-}
-.city-temp span{
-    font-size: 12px;
-}
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-    }
-}
-@media screen and (max-width: 360px){
-   h1{
-        padding-top: 20px;
-        font-size: 35px;
-    } 
-    p{
-        font-size: 18px;
-    }   
-    .left, 
-	.right {
-    width: 100%;
-}
-}
-.weather-result p{
-	font-size: 17px;
-    color: #926746;
-    line-height: 1.5;
-}
-button:hover,
-a:hover{
-    cursor: pointer;
+.hide {
+  display: none;
 }
 
-/**** Hike results style ****/
-.container {
-    width: 90%;
-    margin: 0 auto;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;  
+ul {
+  padding: 15px;
+  list-style-type: none;
+  display: inline-block; 
 }
-.block {
-    background-color: rgba(238,163,108, 0.1);
-    border: 1px solid #FCBA91;
-    border-radius: 5px;
-    padding: 10px;
-    width: 250px;
-    margin: 5px;
+
+p {
+  margin-bottom: .25em;
+  margin-top: .25em;
 }
-.trail-data img{
-    width: 100%;
-    height:200px;
-    background-size: cover;
-    background-position: center center;
-    padding-bottom: 10px;
+
+.start-display {
+  display: inline-block;
+  width: 80%;
+  margin-top: 150px;
+  padding-bottom: 30px;  
+  border-radius: 10px;
+  background-color: rgba(214, 219, 223, .7)
 }
-.trail-data p,a{
-    color: #926746;
-    font-size: 15px;
-    line-height: 1.2; 
-    text-align: left;
+
+h1 {
+  font-size: 45px;
+  margin-bottom: 10px;
 }
-.trail-data h2{
-    font-size: 30px;
-    margin-bottom: 50px;
+
+.api_info {
+  font-size: 12px;
+  color: #2874A6;
 }
-.trail-data h3 a{
-    Font-Family: 'Julius Sans One', Sans-Serif;
-    text-decoration:none;
-    color: #41270e;
-    font-size: 16px;
-    font-weight: 800;
+
+.location-form {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
-.trail-data h3 a:hover{
-	font-size:18px;
+
+.form-location {
+  height: 50px;
+  font-size: 20px;
+
 }
-.error-msg{
-	margin-top: 20px;
-    padding-bottom: 50px;
-    font-size: 30px;
+
+form input {
+  height: 50px; 
+  width: 250px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: 0px;
+  padding-left: 15px;
 }
-/**** Footer style ****/
+
+.submit_button {
+ display:inline-block;
+ padding:0.35em 1.2em;
+ border:0.1em solid #FFFFFF;
+ margin:0 0.3em 0.3em 0;
+ border-radius:0.12em;
+ box-sizing: border-box;
+ text-decoration:none;
+ font-family:'Roboto',sans-serif;
+ font-weight:300;
+ color:#FFFFFF;
+ text-align:center;
+ transition: all 0.2s;
+}
+
+.weather_display {
+  display: inline-block;
+  margin-top: 20px;
+  width: 80%;
+  border-radius: 10px;
+  background-color: rgba(214, 219, 223, .7);
+}
+
+.options {
+  margin-top: 25px;
+  margin-bottom: 25px; 
+}
+
+.hike-button, .climb-button {
+  height: 40px;
+  border-radius: 5px;
+  font: sans-serif;
+  font-size: 15px;
+  font-weight: 450;
+  margin-left: 7px;
+  margin-right: 7px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.activity_results {
+ display: inline-block;
+}
+
+.result_col_4 {
+  background-color: rgba(214, 219, 223, .7);
+  display: inline-block;
+  vertical-align: top;
+  width: 20%;
+  height: 300px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.result_col_4 img {
+ width: 150px;
+ height: 150px;
+ border-radius: 5px;
+}
+
 footer {
-    background-color: rgba(0, 0, 0, 0.9);
-    height: 50px;
-    padding: 5px;
-    text-align: center; 
+  margin-top: 60px;
+  margin-bottom: 0;
+  width:100%;
+  height: 120px;
+  background-color: rgba(214, 219, 223, .7);
+  box-shadow: 0 0 10px black; 
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem
 }
-footer p{
-    font-size: 15px;
-    color: #855e41;
+
+footer img {
+  height: 55px;
+  padding: 10px;
 }
-footer img{
-    height: 30px;
-    width: 30px;
+
+footer p {
+  margin-bottom: 0em;
+  margin-top: 0em;
+}
+
+@media screen and (max-width: 640px) {
+  .result_col_4 {
+    width: 90%;
+    display: inline-block;
+    vertical-align: text-top;
+  }
+  .start-display {
+    width: 80%;
+    margin-top: 80px;
+    padding-bottom: 30px;  
+    border-radius: 5px;
+  }
+  form input {
+    width: 75%;
+    margin-bottom: 10px;
+  }
+
 }
