@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>LET'S HIKE</title>
-	<link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
-	<link rel="stylesheet" href="style.css" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Monda" rel="stylesheet">
-</head>
-<body>	
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Lindsey Howard">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Outdoor Planner aims support to plan your next outdoor adventure.">
+    <title>Outdoor Planner</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
     <main role="main">
       <div class="start-display">
         <header role="banner" class="row">
           <h1>Outdoor Planner</h1>
-          <p>Powered by Google Maps, WeatherUnderground, Hiking Project, and Climbing Project</p>
+          <p class="api_info">Powered by Google Maps, WeatherUnderground, Hiking Project, and Climbing Project</p>
           <p>Plan your next Hike or Climb by getting a 5 Day Forecast and local hikes and climbing routes!</p>
         </header>
 
@@ -39,17 +41,16 @@
       <section class="activity_results">
       </section>
     </main>
-	
-	<footer role="contentinfo">
-		<a href="https://github.com/Codelikeagirl29" target="_blank"><img src="./github_icon.png" alt="github icon"></a>&nbsp;
-        <a href="https://www.linkedin.com/in/lindsey-howard/" target="_blank"><img src="./linkedin_icon.png" alt="linkedin icon"></a>&nbsp;
-        <a href="mailto:codelikeagirl91@gmail.com"><img src="./mail_icon.png" alt="email icon"></a>
-        <p>Developed by Lindsey Howard</p>
-	</footer>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" 
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
-      crossorigin="anonymous"></script>
-	<script type="text/javascript" src="index.js"></script>
-  	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi7bhHvyXI8nzfhR70rHw6kV-7Z9zrMS0&libraries=places&callback=autocompleteSearchText"></script>
-</body>
+
+    <footer class="footer" role="contentinfo">
+      <a href="https://github.com/codelikeagirl29" target="_blank"> <img src="iconfinder_1217178_github_icon_512px.png" alt="github icon"></a>&nbsp;
+      <a href="https://www.linkedin.com/in/lindsey-howard/" target="_blank"><img src="iconfinder_608764_linkedin_account_business_people_person_icon_512px.png" alt="linkedin icon"></a>&nbsp;
+      <a href="mailto:codelikeagirl91@gmail.com"><img src="iconfinder_609162_mail_communication_email_internet_letter_icon_512px.png" alt="email icon"></a>
+      <p>Created by Lindsey</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="index.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASP9vWd3OTWFUDn6FoliMof9g8k3PVYds&libraries=places&callback=activatePlacesSearch""></script>
+  </body>
+
 </html>
