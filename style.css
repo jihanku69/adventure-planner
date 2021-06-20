@@ -3,10 +3,6 @@ body, html{
     margin: 0;
 }
 main{
-    margin: 0;
-}
-/**** Header styling ****/
-.bg{
 	background: 
        linear-gradient(
            rgba(255,255,255,0.1),
