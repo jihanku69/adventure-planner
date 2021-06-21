@@ -1,176 +1,95 @@
+/*** API URLS ***/
+const WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?appid=ad19330a1a85eb38a78e85ceaba0c320';
+const HIKING_PROJECT_URL = 'https://www.hikingproject.com/data/get-trails?maxDistance=10&key=200239759-6ef441eb317cb8f0a1c5f5220bf0cbc2';
 
-function getLongLat(location){
-	console.log($('.js-query').val());
-  $.getJSON('https://maps.googleapis.com/maps/api/geocode/json',{
-    address:`${location}`,
-    key:'AIzaSyASP9vWd3OTWFUDn6FoliMof9g8k3PVYds'
-		}, 
-		function(response){
-			console.log(response);
-			let lat = response.results[0].geometry.location.lat;
-			let lng = response.results[0].geometry.location.lng;
-			getWeatherData(lat, lng);
-			getHikeData(lat, lng);
-			getClimbData(lat, lng);
-			weatherHeader(response);
+/*** Get weather data from openWeatherMap API ***/
+function getWeatherData() {
+	let city = $('#city-name').val();
+	$('#city-name').val('');
+    
+	const settings = {
+	    url: WEATHER_URL,
+	    data: {
+	      	q: city,
+	      	units: 'Imperial'
+	    },
+	    dataType: 'jsonp',
+	    type: 'GET',
+	    success: displayWeather
+  	};
+  	$.ajax(settings)
+  	.fail(function(){
+  		$('.weather-result').html("");
+  		$('.hike-result').html(`<h2 class="error-msg"> Please enter a valid city name</h2>`);
+  	});
+};
 
-	});
-}
+/*** Display weather data ***/
+function displayWeather(data) {
+	$('.weather-result').html(getWeatherDataTemplate(data));
+	getHikeTrailsData(data.coord.lat, data.coord.lon, displayHikeTrails);
+};
 
-function getWeatherData(lat, lng){
-  console.log(lat);
-  console.log(lng);
-  $.getJSON(`https://api.wunderground.com/api/d8dc2c1a95d6b964/forecast10day/q/${lat},${lng}.json`,{
-    }, 
-    function(weatherResponse){
-  	  let widget = renderWeatherData(weatherResponse);
-  	  $('.weather_results').html(widget);
-  });
-}
+/*** Get hiking trails data from REI Hiking project API ***/
+function getHikeTrailsData(latitude, longitude, callback) {
+    const settings = {
+    	url: HIKING_PROJECT_URL,
+    	data: {
+    		sort: 'distance',
+    		lat: latitude,
+    		lon: longitude
+    	},
+    	dataType: 'json',
+    	type: 'GET',
+    	success: callback
+    };
+    $.ajax(settings);
+};
 
-function renderWeatherLocation(data){
-	console.log(data);
-	return `
-	<div class="city_state">
-	  <h2>5 Day Forecast: ${data.results[0].address_components[0].long_name}, ${data.results[0].address_components[2].long_name}</h2>
-	</div>  `
-}
+/*** Display hiking trails ***/
+function displayHikeTrails(data) {
+	$('.hike-result').html("");
+	let trailList = data.trails;
 
-function weatherHeader(data){
-  let widget = renderWeatherLocation(data)
-  $('.city_state').html(widget);
-}
-
-
-function renderWeatherData(data){
-	console.log(data);
-	return `
-  <div class="weather_results">
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[0].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[0].date.day} ${data.forecast.simpleforecast.forecastday[0].date.monthname} ${data.forecast.simpleforecast.forecastday[0].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[0].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[0].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[0].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[0].low.fahrenheit} &#8457 </li>
-    </ul>		
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[1].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[1].date.day} ${data.forecast.simpleforecast.forecastday[1].date.monthname} ${data.forecast.simpleforecast.forecastday[1].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[1].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[1].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[1].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[1].low.fahrenheit} &#8457 </li>
-    </ul>	
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[2].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[2].date.day} ${data.forecast.simpleforecast.forecastday[2].date.monthname} ${data.forecast.simpleforecast.forecastday[2].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[2].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[2].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[2].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[2].low.fahrenheit} &#8457 </li>
-    </ul>	
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[3].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[3].date.day} ${data.forecast.simpleforecast.forecastday[3].date.monthname} ${data.forecast.simpleforecast.forecastday[3].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[3].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[3].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[3].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[3].low.fahrenheit} &#8457 </li>
-    </ul>	
-    <ul>
-      <li>${data.forecast.simpleforecast.forecastday[4].date.weekday}</li>
-      <li>${data.forecast.simpleforecast.forecastday[4].date.day} ${data.forecast.simpleforecast.forecastday[4].date.monthname} ${data.forecast.simpleforecast.forecastday[4].date.year}</li>	
-      <li><img src="${data.forecast.simpleforecast.forecastday[4].icon_url}"></li>
-      <li>${data.forecast.simpleforecast.forecastday[4].conditions}</li>
-      <li>High Temp: ${data.forecast.simpleforecast.forecastday[4].high.fahrenheit} &#8457 </li>
-      <li>Low Temp: ${data.forecast.simpleforecast.forecastday[4].low.fahrenheit} &#8457 </li>
-    </ul>	
-  </div>`;
-}
-
-
-
-function getHikeData(lat, lng){
-	$('.hike-button').click(event =>{
-    $.getJSON('https://www.hikingproject.com/data/get-trails?',{
-      lat: `${lat}`,
-      lon: `${lng}`,
-      maxDistance: 50,
-      maxResults: 12,
-      key: '200228708-342833161758642e366f0f5189964977'
-      }, 
-      function(hikeResponse){
-  	    let trails = hikeResponse.trails.map((item, index) => renderTrailData(item));
-  	    $('.activity_results').html(trails);
-    });
-  });
-}
-
-function getClimbData(lat, lng){
-	$('.climb-button').click(event =>{
-    $.getJSON('https://www.mountainproject.com/data/get-routes-for-lat-lon?',{
-      lat: `${lat}`,
-      lon: `${lng}`,
-      maxDistance: 50,
-      minDiff: 5.6,
-      maxDiff: 5.11,
-      maxResults: 12,
-      key: '200228708-038c5314f084927567e4ee92d566df92'
-      }, 
-      function(climbResponse){
-        console.log(climbResponse);
-
-  	    let routes = climbResponse.routes.map((item, index) => renderClimbData(item));
-  	    $('.activity_results').html(routes);
-    });
-  });
-}
-
-function renderClimbData(data){
-	console.log(data)
-	let imgSmall = data.imgSmall ? data.imgSmall : './images/no_image.png';
-	return `
-	  <div class="result_col_4">
-	    <a href="${data.url}" target="_blank">
-	    <img src="${imgSmall}" alt="rockface picture"></a>
-	    <p>${data.name}</p>
-	    <p>${data.location[1]}</p>
-	    <p>${data.type}</p>
-	    <p>${data.rating}</p>
-	  </div>
-	  ` 
+	if(trailList.length === 0) {
+		$('.hike-result').append(`<h2 class="error-msg"> No nearby trails found</h2>`);
 	}
+	else
+	{
+		for (let i = 0; i < trailList.length; i ++) {
+        	let placename = encodeURI(trailList[i].name);
+            let result = hikeTrailTemplate(trailList[i], placename);
+	    	$('.hike-result').append(result);
+		}	
+	}  
+};
 
-function renderTrailData(data){
-  console.log(data);
-  let imgSmall = data.imgSmall ? data.imgSmall : './images/no_image.png';
-  return`   
-    <div class="result_col_4">
-     <a href="${data.url}" target="_blank">
-     <img src = "${data.imgSmall}" alt="trail photo"></a>
-     <p>${data.name}</p>
-     <p>${data.location}</p>
-     <p>${data.length} Miles</p>
-     <p>${data.conditionStatus}</p>
-    </div>
-  `
+/*** Autocomplete the input text using Google map API ***/
+function  autocompleteSearchText()  {
+    let input = $('#city-name')[0];
+    let options = {
+        types: ['(regions)']
+    };
+    autocomplete = new google.maps.places.Autocomplete(input, options);
 }
 
-function enterLocation(){
-  $('.location-form').submit(event => {
-  event.preventDefault();
-  let query = $('.js-query').val();
-  $('.js-query').val("");
-  getLongLat(query);
-  $('.navigation').removeClass('hide');
-  })
+//Scrolls the page to the result section of the page
+function scrollpage() {
+	$('.submit-button').click(function() {
+        $('html, body').animate({
+        scrollTop: $("#weather-display").offset().top
+    	}, 1500);
+    });
 }
 
-function activatePlacesSearch(){
-  let input = document.getElementById('autocomplete')
-  let autocomplete = new google.maps.places.Autocomplete(input);
-}
+/*** Begins execution when a place name is submited on Landing page ***/
+function searchHikeTrails() {
+	$('.search-form').submit(function(event) {
+		event.preventDefault();
+    	getWeatherData();
+	});
+    scrollpage();
+};
 
-$(enterLocation);
-
+/*** Begin ***/
+$(searchHikeTrails);
