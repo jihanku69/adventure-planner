@@ -1,3 +1,4 @@
+
 # Plan Your Adventure
 [Live link](https://codelikeagirl29.github.io/adventure-planner/) to my app.
 
@@ -10,4 +11,4 @@ For all my fellow explorers out there, this app is for viewing the weather and l
 - Postman
 - [Rapidapi](https://rapidapi.com/marketplace)
 
-![Screenshot](https://github.com/CodeLikeAGirl29/adventure-planner/blob/720e041df905db3bce407fd4bbfbc5cf2811c222/adventure-api.jpg)
+![screenshot](https://user-images.githubusercontent.com/25946305/123229214-13645680-d4a4-11eb-9d4d-1b4ea03bd9c4.jpg)
