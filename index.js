@@ -24,6 +24,10 @@ function getWeatherData() {
   	});
 };
 
+let locationIcon = document.querySelector('.weather-icon');
+const {icon} = data.weather[0];
+locationIcon.innerHTML = `<img src="icons/${icon}.png">`;
+
 /*** Display weather data ***/
 function displayWeather(data) {
 	$('.weather-result').html(getWeatherDataTemplate(data));
